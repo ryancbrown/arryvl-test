@@ -10,8 +10,8 @@ mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true 
 const app = express();
 
 // Define middleware here
-if (process.env.NODE_ENV !== "production") {
-  app.use(express.static("client/public"));
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
 }
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -22,7 +22,7 @@ app.use("/notification", require("./routes/twilioRoute.js"))
 app.use("/googlemap", require("./routes/googlemapRoute.js"))
 
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "./client/public/index.html"));
+  res.sendFile(path.join(__dirname, "./client/build/index.html"));
 })
 
 app.listen(PORT, () => {
