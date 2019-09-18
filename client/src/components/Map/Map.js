@@ -40,13 +40,7 @@ class Map extends React.Component {
   }
   
   componentDidMount = () => { 
-    if(this.state.progress.length === 0) { 
-      // Set initial location if none exists
-      this.initialLocation()
-    } 
-      // // Start logging locations
-      // this.getLocation()
-    
+    this.initialLocation()
   }
   
   render() {
@@ -72,6 +66,7 @@ class Map extends React.Component {
       )
     }
   }
+
 
 const MapComponent = withScriptjs(withGoogleMap(Map))
 
